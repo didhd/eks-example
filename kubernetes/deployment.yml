@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: java-demoapp-x86
   name: java-demoapp-x86
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: java-demoapp-x86
