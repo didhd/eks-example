@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: java-demoapp-x86
+  name: java-demoapp-x86
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: java-demoapp-x86
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: java-demoapp-x86
+        app.kubernetes.io/part-of: java-demoapp
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      containers:
+        - image: 740136895305.dkr.ecr.ap-northeast-2.amazonaws.com/eks-example:latest
+          name: main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "1"
+              memory: "1Gi"
